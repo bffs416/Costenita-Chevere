@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie Costeñita | Dark Cinematic Celebration</title>
+    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Netflix Typography: Inter for a clean, modern UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="netflix-theme">
+    <!-- Navbar -->
+    <nav class="navbar netflix-nav">
+        <div class="logo">Barbie Costeñita</div>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#cast">El Reparto</a></li>
+            <li><a href="#trailer">Trailer & BTS</a></li>
+            <li><a href="#store">Coleccionables</a></li>
+            <li><a href="#rsvp">La Lista VIP</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Background Video for Hero -->
+        <video class="hero-video" autoplay loop muted playsinline>
+            <!-- Local Hero Video -->
+            <source src="images/Hero.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <!-- Overlay to ensure text is readable over the video -->
+        <div class="hero-video-overlay"></div>
+
+        <div class="hero-content animate-fade-in">
+            <h2 class="sub-title">UNA PRODUCCIÓN ORIGINAL</h2>
+            <h1 class="main-title">EL ESTRENO MÁS ESPERADO</h1>
+            <p class="tagline">¡Eche, pura sabrosura en 4K! Del mundo de muñecas a la realidad, el bando más
+                espectacular que ha visto la costa está por comenzar.</p>
+            <div class="cta-buttons">
+                <a href="#trailer" class="btn btn-primary">Ver "El Espeluque"</a>
+                <a href="#cast" class="btn btn-secondary">Ver Reparto</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Cast Section (Reparto de Lujo) -> GROUPED BY HIERARCHY -->
+    <section id="cast" class="cast-section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Elenco Principal</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="slider-wrapper">
+                <button class="slider-arrow left" aria-label="Previous">❮</button>
+                <div class="cast-slider">
+                    <!-- Kathe -->
+                    <div class="actor-poster-wrapper protagonist">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Kathe.png" alt="Kathe" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Kathe</h3>
+                                <p class="actor-tag">La Reina de la Fiesta</p>
+                                <p class="actor-quote">"¡Paz y amor pal' bando! Yo soy la dueña de la sabrosura hoy."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Felipe -->
+                    <div class="actor-poster-wrapper protagonist">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Felipe.png" alt="Felipe" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Felipe</h3>
+                                <p class="actor-tag">El Novio Oficial</p>
+                                <p class="actor-quote">"Siempre elegante, siempre firme. Haciendo de esta película un
+                                    éxito."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pello -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Pello.png" alt="Pello" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Pello</h3>
+                                <p class="actor-tag">Productor Ejecutivo</p>
+                                <p class="actor-quote">"El tío sabroso. Aquí lo que hay es sonrisas y sol de sobra."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Yira -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Yira.jpeg" alt="Yira" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Yira</h3>
+                                <p class="actor-tag">Directora de Vestuario</p>
+                                <p class="actor-quote">"La prima del flow. Poniendo a todos radiantes pal' set."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ezy -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Ezy.png" alt="Ezy" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Ezy</h3>
+                                <p class="actor-tag">Doble de Acción</p>
+                                <p class="actor-quote">"El hermano de la gozadera. ¡Brincando de escena en escena!"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Jeremy -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Jeremy.jpg" alt="Jeremy" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Jeremy</h3>
+                                <p class="actor-tag">Jefe de Efectos Especiales</p>
+                                <p class="actor-quote">"El sobrino con energía. Metiéndole la chispa y la bulla a esto."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vico -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Viko.png" alt="Vico" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Vico</h3>
+                                <p class="actor-tag">Asesora de Glamour</p>
+                                <p class="actor-quote">"La tía del brillo. Porque sin estilo no hay película."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mami -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Mami.png" alt="Mami" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Mami</h3>
+                                <p class="actor-tag">Productora General</p>
+                                <p class="actor-quote">"La matriarca de oro. Cuidando que nada le falte a la reina."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pablo -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Pablo.png" alt="Pablo" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Pablo</h3>
+                                <p class="actor-tag">Director de Logística</p>
+                                <p class="actor-quote">"El suegro observador. Chequeando que todo marche firme y
+                                    parejo."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lucero -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Lucero.png" alt="Lucero" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Lucero</h3>
+                                <p class="actor-tag">Jefa de Casting</p>
+                                <p class="actor-quote">"La suegra elegante. Asegurando el nivel premium del evento."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Diana -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Diana.png" alt="Diana" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Diana</h3>
+                                <p class="actor-tag">Guionista Principal</p>
+                                <p class="actor-quote">"La cuñada del drama. Añadiendo los giros de guión más intensos."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Nicolas -->
+                    <div class="actor-poster-wrapper">
+                        <div class="actor-poster netflix-card">
+                            <img src="images/Nicolas.png" alt="Nicolas" class="poster-image">
+                            <div class="poster-overlay">
+                                <h3>Nicolás</h3>
+                                <p class="actor-tag">Invitado Especial</p>
+                                <p class="actor-quote">"El novio de Diana. Acompañando el drama y armando el desorden."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow right" aria-label="Next">❯</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Trailer Section -->
+    <section id="trailer" class="trailer-section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">En Exclusiva: El Trailer</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="video-container netflix-card trailer-vertical">
+                <video src="images/Trailer.mp4" controls preload="metadata"
+                    style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind the Scenes Section -->
+    <section id="bts" class="catalog-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Chismes Exclusivos: Detrás de Cámaras</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="slider-wrapper catalog-row">
+                <button class="slider-arrow left" aria-label="Previous">❮</button>
+                <div class="netflix-row">
+                    <!-- Horizontal videos V1 to V8 (No controls, No Download, Click to Play) -->
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V1.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #1</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V2.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #2</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V3.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #3</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V4.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #4</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V5.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #5</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V6.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #6</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V7.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #7</h3>
+                        </div>
+                    </div>
+                    <div class="movie-card netflix-card bts-video">
+                        <video src="images/V8.mp4" muted controlsList="nodownload" preload="metadata"
+                            oncontextmenu="return false;" onclick="this.paused ? this.play() : this.pause()"></video>
+                        <div class="bts-info">
+                            <h3>Chisme #8</h3>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow right" aria-label="Next">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collectibles Store Section -->
+    <section id="store" class="store-section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Coleccionables Exclusivos</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="slider-wrapper">
+                <button class="slider-arrow left" aria-label="Previous">❮</button>
+                <div class="store-slider">
+                    <!-- Generating Store Slides 0 to 10 + 01, 02 -->
+                    <div class="store-slide">
+                        <img src="images/0.png" alt="Coleccionable 0">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/01.png" alt="Coleccionable 01">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/02.png" alt="Coleccionable 02">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/1.png" alt="Coleccionable 1">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/2.png" alt="Coleccionable 2">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/3.png" alt="Coleccionable 3">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/4.png" alt="Coleccionable 4">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/5.png" alt="Coleccionable 5">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/6.png" alt="Coleccionable 6">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/7.png" alt="Coleccionable 7">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/8.png" alt="Coleccionable 8">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/9.png" alt="Coleccionable 9">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="store-slide">
+                        <img src="images/10.png" alt="Coleccionable 10">
+                        <div class="slide-actions">
+                            <p class="price">$15.00</p>
+                            <button class="btn btn-primary add-to-cart">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow right" aria-label="Next">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="rsvp-card netflix-card">
+            <h2>¿Estás en la Lista V.I.P.?</h2>
+            <p>Asegura tu silla para el gran estreno litoraleño.</p>
+            <form class="rsvp-form">
+                <input type="text" placeholder="Tu nombre artístico" required>
+                <input type="email" placeholder="Tu correo pal' chisme" required>
+                <button type="submit" class="btn btn-primary">Confirmo Asistencia</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Barbie Costeñita</div>
+        <p>&copy; 2026. Una Producción Original.</p>
+    </footer>
+
+    <script src="main.js?v=3"></script>
+</body>
+
+</html>
