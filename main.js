@@ -310,6 +310,27 @@ document.addEventListener('DOMContentLoaded', () => {
         v.volume = 0;
     };
 
+    // --- Lazy Video Metadata Loading (Show thumbnails on scroll) ---
+    const videoObserverOptions = {
+        threshold: 0,
+        rootMargin: "0px 0px 300px 0px" // Start loading metadata 300px before they appear
+    };
+
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                if (video.getAttribute('preload') === 'none') {
+                    video.setAttribute('preload', 'metadata');
+                    observer.unobserve(video); // Only need to load metadata once
+                }
+            }
+        });
+    }, videoObserverOptions);
+
+    const btsVideosToObserve = document.querySelectorAll('.bts-video video');
+    btsVideosToObserve.forEach(video => videoObserver.observe(video));
+
     // Apply to all gossip and modal videos
     const allGossipVideos = document.querySelectorAll('.bts-video video, #modalVideo');
     allGossipVideos.forEach(v => {
