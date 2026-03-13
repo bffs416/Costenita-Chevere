@@ -341,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioToggle = document.getElementById('audioToggle');
     const audioStatus = audioToggle.querySelector('.audio-status');
     let isPlaying = false;
+    let pausedByVideo = false;
 
     const updateAudioUI = () => {
         if (isPlaying) {
@@ -352,15 +353,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const playMusic = () => {
+        bgMusic.play().then(() => {
+            isPlaying = true;
+            updateAudioUI();
+        }).catch(e => console.log("Error playing audio:", e));
+    };
+
+    const pauseMusic = (byVideo = false) => {
+        bgMusic.pause();
+        isPlaying = false;
+        if (byVideo) pausedByVideo = true;
+        updateAudioUI();
+    };
+
     const toggleMusic = () => {
         if (isPlaying) {
-            bgMusic.pause();
-            isPlaying = false;
+            pauseMusic();
+            pausedByVideo = false; // Manual pause overrides auto-resume
         } else {
-            bgMusic.play().catch(e => console.log("Erro playing audio:", e));
-            isPlaying = true;
+            playMusic();
+            pausedByVideo = false;
         }
-        updateAudioUI();
     };
 
     audioToggle.addEventListener('click', (e) => {
@@ -368,15 +382,29 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMusic();
     });
 
-    // Auto-play attempt on first interaction (required by browser policies)
+    // Smart Pause: Pause music when any video starts playing
+    document.querySelectorAll('video').forEach(video => {
+        if (video.id === 'bgMusic') return;
+        
+        video.addEventListener('play', () => {
+            if (isPlaying) {
+                pauseMusic(true);
+            }
+        });
+        
+        // Optional: Resume when video ends or is paused (if it was the one that paused it)
+        video.addEventListener('pause', () => {
+            if (pausedByVideo) {
+                playMusic();
+                pausedByVideo = false;
+            }
+        });
+    });
+
+    // Auto-play attempt on first interaction
     const startAudioOnFirstInteraction = () => {
-        if (!isPlaying) {
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                updateAudioUI();
-            }).catch(() => {
-                // Autoplay blocked, wait for manual click
-            });
+        if (!isPlaying && !pausedByVideo) {
+            playMusic();
         }
         document.removeEventListener('click', startAudioOnFirstInteraction);
         document.removeEventListener('scroll', startAudioOnFirstInteraction);
