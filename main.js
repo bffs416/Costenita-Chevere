@@ -310,10 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
         v.volume = 0;
     };
 
-    // --- Video Volume Lock ---
-    const lockVolume = (v) => {
-        v.volume = 0;
-    };
 
     // Apply to all gossip and modal videos
     const allGossipVideos = document.querySelectorAll('.bts-video video, #modalVideo');
