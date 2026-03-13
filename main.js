@@ -126,31 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Auto-play for Collectibles Slideshow
-    const storeSlider = document.querySelector('.store-slider');
-    if (storeSlider) {
-        let isHovered = false;
-
-        // Pause on hover
-        storeSlider.addEventListener('mouseenter', () => isHovered = true);
-        storeSlider.addEventListener('mouseleave', () => isHovered = false);
-        storeSlider.addEventListener('touchstart', () => isHovered = true);
-        storeSlider.addEventListener('touchend', () => isHovered = false);
-
-        setInterval(() => {
-            if (!isHovered) {
-                const maxScrollLeft = storeSlider.scrollWidth - storeSlider.clientWidth;
-                // Add a small threshold (e.g. 50px) because fractional pixels can make it never perfectly equal
-                if (Math.ceil(storeSlider.scrollLeft) >= maxScrollLeft - 50) {
-                    storeSlider.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    // Determine width of ONE slide to slide cleanly
-                    let slideWidth = storeSlider.querySelector('.store-slide')?.offsetWidth || window.innerWidth;
-                    storeSlider.scrollBy({ left: slideWidth, behavior: 'smooth' });
-                }
-            }
-        }, 3000); // Change slide every 3 seconds
-    }
 
     // Interactive Magnifying Glass Effect
     const zoomContainers = document.querySelectorAll('.zoom-container');

@@ -331,42 +331,10 @@ h4 {
     transition: opacity var(--transition-speed);
 }
 
-.poster-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 1rem 1rem;
-    background: var(--overlay-gradient);
-    opacity: 0;
-    transition: opacity var(--transition-speed);
+.netflix-card .poster-overlay {
+    display: none;
 }
 
-.netflix-card:hover .poster-overlay {
-    opacity: 1;
-}
-
-.netflix-card:hover .poster-image {
-    opacity: 0.8;
-}
-
-.poster-overlay h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-}
-
-.actor-tag {
-    font-size: 0.8rem;
-    color: var(--text-white);
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.actor-quote {
-    font-size: 0.8rem;
-    font-style: italic;
-    line-height: 1.3;
-}
 /* Cast Modal Customizations */
 .cast-modal-content {
     max-width: 450px;
@@ -378,6 +346,7 @@ h4 {
 }
 
 .expanded-cast-card .poster-overlay {
+    display: block !important;
     opacity: 1 !important;
     padding: 2.5rem 2rem;
     background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%);
@@ -555,71 +524,50 @@ h4 {
 }
 
 /* ==========================================================================
-   Store / Collectibles Slideshow
+   Store / Collectibles GRID
    ========================================================================== */
 .store-section {
     background-color: #141414;
     padding-bottom: 4rem;
 }
 
-.store-slider {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Firefox */
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    /* Break out of container to full viewport width */
-    gap: 2vw;
-    /* Add slight gap between slides */
-    padding: 0 10vw;
-    /* Center the first 80vw slide */
-    box-sizing: border-box;
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 2rem 4%;
 }
 
-.store-slider::-webkit-scrollbar {
-    display: none;
-}
-
-.store-section .slider-wrapper {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    position: relative;
-    padding: 0;
-}
-
-.store-slide {
-    flex: 0 0 auto;
-    width: 90vw;
-    min-width: 90vw;
-    scroll-snap-align: center;
+.store-item {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 1rem;
-    height: 90vh;
-    box-sizing: border-box;
+    background: rgba(40, 40, 40, 0.4);
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.store-item:hover {
+    transform: translateY(-10px);
+    background: rgba(60, 60, 60, 0.6);
+}
+
 }
 
 .zoom-container {
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
     border-radius: 8px;
-    margin-bottom: 2rem;
     cursor: zoom-in;
 }
 
-.store-slide img {
+.zoom-container img {
     height: 100%;
     width: auto;
     max-width: 95%;
@@ -627,9 +575,8 @@ h4 {
     border-radius: 8px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
     transition: transform 0.2s ease-out, box-shadow 0.6s ease;
-    /* La animación de respiración se desactivará al hacer el efecto de lupa en JS si es necesario */
     animation: breathingZoom 8s ease-in-out infinite;
-    pointer-events: none; /* Dejamos que el contenedor maneje los eventos */
+    pointer-events: none;
 }
 
 .zoom-container:hover img {
