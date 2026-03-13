@@ -315,9 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
             updateAudioUI();
         }).catch(e => {
             console.log("Autoplay blocked, waiting for interaction:", e);
-            // Even if blocked, we want the UI to show we WANT it on if the user prefers
-            isPlaying = false; 
-            updateAudioUI();
+            // We keep isPlaying = true so the UI stays as "ON"
+            // and the interaction listeners know they should try to play.
         });
     };
 
@@ -367,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto-play effort on any interaction
     const startAudioOnFirstInteraction = () => {
-        if (!isPlaying && !pausedByVideo) {
+        if (bgMusic.paused && !pausedByVideo) {
             playMusic();
         }
     };
