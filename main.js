@@ -332,10 +332,57 @@ document.addEventListener('DOMContentLoaded', () => {
     btsVideosToObserve.forEach(video => videoObserver.observe(video));
 
     // Apply to all gossip and modal videos
-    const allGossipVideos = document.querySelectorAll('.bts-video video, #modalVideo');
     allGossipVideos.forEach(v => {
         v.addEventListener('volumechange', () => lockVolume(v));
-        // Force state initially
-        lockVolume(v);
     });
+
+    // --- Background Music Logic ---
+    const bgMusic = document.getElementById('bgMusic');
+    const audioToggle = document.getElementById('audioToggle');
+    const audioStatus = audioToggle.querySelector('.audio-status');
+    let isPlaying = false;
+
+    const updateAudioUI = () => {
+        if (isPlaying) {
+            audioToggle.classList.add('playing');
+            audioStatus.textContent = 'Sonido ON';
+        } else {
+            audioToggle.classList.remove('playing');
+            audioStatus.textContent = 'Sonido OFF';
+        }
+    };
+
+    const toggleMusic = () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            isPlaying = false;
+        } else {
+            bgMusic.play().catch(e => console.log("Erro playing audio:", e));
+            isPlaying = true;
+        }
+        updateAudioUI();
+    };
+
+    audioToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMusic();
+    });
+
+    // Auto-play attempt on first interaction (required by browser policies)
+    const startAudioOnFirstInteraction = () => {
+        if (!isPlaying) {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                updateAudioUI();
+            }).catch(() => {
+                // Autoplay blocked, wait for manual click
+            });
+        }
+        document.removeEventListener('click', startAudioOnFirstInteraction);
+        document.removeEventListener('scroll', startAudioOnFirstInteraction);
+    };
+
+    document.addEventListener('click', startAudioOnFirstInteraction);
+    document.addEventListener('scroll', startAudioOnFirstInteraction);
+
 });
