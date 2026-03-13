@@ -198,12 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
             currentlyExpanded.classList.remove('expanded');
             castBackdrop.classList.remove('active');
             currentlyExpanded = null;
+            document.body.style.overflow = ''; // Restore scroll
         }
     };
 
     castWrappers.forEach(wrapper => {
         wrapper.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent closing immediately if backdrop is somehow triggered
+            e.stopPropagation();
             
             if (wrapper.classList.contains('expanded')) {
                 closeExpandedCast();
@@ -212,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 wrapper.classList.add('expanded');
                 castBackdrop.classList.add('active');
                 currentlyExpanded = wrapper;
+                document.body.style.overflow = 'hidden'; // Block scroll
             }
         });
     });
@@ -258,4 +260,25 @@ document.addEventListener('DOMContentLoaded', () => {
             closeLightbox();
         }
     });
+
+    // --- Mobile Menu Logic ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });
