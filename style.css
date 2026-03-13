@@ -74,11 +74,12 @@ h4 {
 }
 
 .nav-links a {
-    color: var(--text-color);
+    color: var(--text-white);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
+    font-size: 1.05rem;
+    font-weight: 600;
     transition: color var(--transition-speed);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
 .nav-links a:hover {
@@ -316,6 +317,52 @@ h4 {
     font-style: italic;
     line-height: 1.3;
 }
+.actor-poster-wrapper.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 1000;
+    width: 300px;
+    max-width: 80vw;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+}
+
+.actor-poster-wrapper.expanded .poster-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.actor-poster-wrapper.expanded .netflix-card {
+    transform: none !important; /* Disable hover scale when expanded */
+    overflow: visible;
+}
+
+.cast-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cast-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .actor-poster-wrapper.expanded {
+        transform: translate(-50%, -50%) scale(1.2);
+        width: 250px;
+    }
+}
 
 /* ==========================================================================
    Trailer
@@ -355,6 +402,39 @@ h4 {
     display: none;
 }
 
+/* Specific Grid for BTS on Mobile to handle 25+ videos */
+@media (max-width: 768px) {
+    #bts .slider-wrapper {
+        display: block; /* Remove flex to let arrows be hidden easily */
+    }
+    
+    #bts .netflix-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+    #bts .slider-arrow {
+        display: none !important;
+    }
+
+    #bts .bts-video {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+    }
+    
+    #bts .bts-info {
+        padding: 1rem;
+    }
+    
+    #bts .bts-info h3 {
+        font-size: 0.9rem;
+    }
+}
+
 .bts-video {
     flex: 0 0 25%;
     min-width: 300px;
@@ -370,21 +450,32 @@ h4 {
 }
 
 .bts-info {
-    padding: 1rem;
+    padding: 1.5rem;
     background: #1a1a1a;
     text-align: center;
     border-top: 2px solid var(--netflix-red);
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.8rem;
 }
 
 .bts-info h3 {
     margin: 0;
-    font-size: 1.1rem;
-    color: var(--text-white);
-    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--netflix-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bts-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text-color);
 }
 
 /* ==========================================================================
@@ -420,32 +511,57 @@ h4 {
 
 .store-slide {
     flex: 0 0 auto;
-    width: 80vw;
-    min-width: 80vw;
+    width: 90vw;
+    min-width: 90vw;
     scroll-snap-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    height: 85vh;
-    /* Massive presentation height */
+    padding: 1rem;
+    height: 90vh;
     box-sizing: border-box;
 }
 
-.store-slide img {
-    height: 70%;
-    width: auto;
-    max-width: 90%;
-    object-fit: contain;
+.zoom-container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
     border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
     margin-bottom: 2rem;
-    transition: transform var(--transition-speed);
+    cursor: zoom-in;
 }
 
-.store-slide img:hover {
-    transform: scale(1.02);
+.store-slide img {
+    height: 100%;
+    width: auto;
+    max-width: 95%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
+    transition: transform 0.2s ease-out, box-shadow 0.6s ease;
+    /* La animación de respiración se desactivará al hacer el efecto de lupa en JS si es necesario */
+    animation: breathingZoom 8s ease-in-out infinite;
+    pointer-events: none; /* Dejamos que el contenedor maneje los eventos */
+}
+
+.zoom-container:hover img {
+    animation: none;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 1);
+    transform: scale(1); /* Punto de partida para el JS */
+}
+
+@keyframes breathingZoom {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
 }
 
 .slide-actions {
@@ -479,7 +595,7 @@ h4 {
    ========================================================================== */
 .rsvp-section {
     position: relative;
-    padding: 6rem 4%;
+    padding: 3rem 4%;
     display: flex;
     justify-content: center;
     background-color: #111;
@@ -489,7 +605,7 @@ h4 {
     position: relative;
     z-index: 1;
     background: #181818;
-    padding: 3rem;
+    padding: 2rem;
     max-width: 500px;
     width: 100%;
     text-align: center;

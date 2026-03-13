@@ -142,4 +142,84 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 3000); // Change slide every 3 seconds
     }
+
+    // Interactive Magnifying Glass Effect
+    const zoomContainers = document.querySelectorAll('.zoom-container');
+    zoomContainers.forEach(container => {
+        const img = container.querySelector('img');
+
+        const handleZoom = (e) => {
+            const rect = container.getBoundingClientRect();
+            let x, y;
+
+            if (e.type === 'mousemove') {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            } else if (e.type === 'touchmove') {
+                x = e.touches[0].clientX - rect.left;
+                y = e.touches[0].clientY - rect.top;
+            }
+
+            // Constrain coordinates within the container
+            const xPercent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            const yPercent = Math.max(0, Math.min(100, (y / rect.height) * 100));
+
+            // Apply zoom with smooth transition from the cursor point
+            img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+            img.style.transform = 'scale(2.8)'; // Slightly more zoom for better detail
+        };
+
+        const resetZoom = () => {
+            img.style.transform = 'scale(1)';
+            img.style.transformOrigin = 'center center';
+        };
+
+        container.addEventListener('mousemove', handleZoom);
+        container.addEventListener('mouseleave', resetZoom);
+        
+        // Touch support for mobile devices
+        container.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent scrolling while zooming
+            handleZoom(e);
+        }, { passive: false });
+        container.addEventListener('touchend', resetZoom);
+    });
+
+    // --- Cast Expansion Logic ---
+    const castBackdrop = document.createElement('div');
+    castBackdrop.className = 'cast-backdrop';
+    document.body.appendChild(castBackdrop);
+
+    const castWrappers = document.querySelectorAll('.actor-poster-wrapper');
+    let currentlyExpanded = null;
+
+    const closeExpandedCast = () => {
+        if (currentlyExpanded) {
+            currentlyExpanded.classList.remove('expanded');
+            castBackdrop.classList.remove('active');
+            currentlyExpanded = null;
+        }
+    };
+
+    castWrappers.forEach(wrapper => {
+        wrapper.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing immediately if backdrop is somehow triggered
+            
+            if (wrapper.classList.contains('expanded')) {
+                closeExpandedCast();
+            } else {
+                closeExpandedCast();
+                wrapper.classList.add('expanded');
+                castBackdrop.classList.add('active');
+                currentlyExpanded = wrapper;
+            }
+        });
+    });
+
+    castBackdrop.addEventListener('click', closeExpandedCast);
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeExpandedCast();
+    });
 });
