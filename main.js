@@ -133,11 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             modalVideo.src = video.getAttribute('src');
             modalVideo.muted = true;
-            if (window.innerHeight > window.innerWidth && window.innerWidth < 768) {
-                videoModal.classList.add('forced-landscape');
-            } else {
-                videoModal.classList.remove('forced-landscape');
-            }
             videoModal.classList.add('active');
             modalVideo.play();
             document.body.style.overflow = 'hidden';
@@ -146,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeLightbox = () => {
         videoModal.classList.remove('active');
-        videoModal.classList.remove('forced-landscape');
         modalVideo.pause();
         modalVideo.src = '';
         document.body.style.overflow = '';
