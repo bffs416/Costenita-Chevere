@@ -332,6 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btsVideosToObserve.forEach(video => videoObserver.observe(video));
 
     // Apply to all gossip and modal videos
+    const allGossipVideos = document.querySelectorAll('.bts-video video, #modalVideo');
     allGossipVideos.forEach(v => {
         v.addEventListener('volumechange', () => lockVolume(v));
     });
