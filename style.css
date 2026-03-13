@@ -473,7 +473,7 @@ h4 {
     #bts .netflix-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 20px 12px; /* 20px vertical gap, 12px horizontal */
         overflow-x: hidden;
         padding: 0;
     }
@@ -482,18 +482,37 @@ h4 {
         display: none !important;
     }
 
+    #bts .netflix-card {
+        aspect-ratio: auto; /* Permitir que crezca verticalmente */
+        overflow: visible;  /* No cortar el texto */
+        height: auto;
+    }
+
     #bts .bts-video {
         flex: none;
         width: 100%;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        height: auto;
     }
     
     #bts .bts-info {
-        padding: 1rem;
+        padding: 2rem 1.2rem; /* Más espacio interno */
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 350px; /* Tarjeta mucho más larga como se pidió */
+        justify-content: flex-start;
+        background: #1a1a1a;
     }
     
-    #bts .bts-info h3 {
-        font-size: 0.9rem;
+    #bts .bts-info p {
+        font-size: 0.95rem; /* Texto un poco más legible */
+        line-height: 1.5;
+        padding-right: 4px;
+        margin-bottom: 0.5rem;
+        color: #e5e5e5;
     }
 }
 
@@ -512,7 +531,7 @@ h4 {
 }
 
 .bts-info {
-    padding: 1.5rem;
+    padding: 2.5rem 2rem; /* Much more spacious */
     background: #1a1a1a;
     text-align: center;
     border-top: 2px solid var(--netflix-red);
@@ -521,7 +540,8 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 1.2rem;
+    min-height: 350px; /* Longer cards for desktop/tablet */
 }
 
 .bts-info h3 {
@@ -569,6 +589,13 @@ h4 {
 
 .store-slider::-webkit-scrollbar {
     display: none;
+}
+
+.store-section .slider-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    padding: 0;
 }
 
 .store-slide {
@@ -736,20 +763,24 @@ h4 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(20, 20, 20, 0.5);
     color: white;
     border: none;
-    font-size: 2vw;
-    padding: 1.5rem 1rem;
+    font-size: 2.5rem;
+    padding: 2rem 1rem;
     cursor: pointer;
-    z-index: 30;
-    transition: background 0.3s, transform 0.1s;
-    height: auto;
+    z-index: 100; /* Asegurar que estén sobre todo */
+    transition: all 0.3s ease;
+    height: 30%; /* Flechas más largas estilo Netflix */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 4px;
 }
 
 .slider-arrow:hover {
-    background: var(--netflix-red);
+    background: rgba(20, 20, 20, 0.8);
+    font-size: 3rem;
 }
 
 .slider-arrow:active {
@@ -757,11 +788,11 @@ h4 {
 }
 
 .slider-arrow.left {
-    left: 2%;
+    left: 0;
 }
 
 .slider-arrow.right {
-    right: 2%;
+    right: 0;
 }
 
 /* ==========================================================================

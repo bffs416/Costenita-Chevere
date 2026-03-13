@@ -102,17 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
     sliderWrappers.forEach(wrapper => {
         const leftArrow = wrapper.querySelector('.slider-arrow.left');
         const rightArrow = wrapper.querySelector('.slider-arrow.right');
-        const sliderContent = wrapper.querySelector('.cast-slider, .netflix-row, .store-slider');
+        const sliderContent = wrapper.querySelector('.cast-slider, .netflix-row, .store-slider, .slider-content');
 
         if (leftArrow && rightArrow && sliderContent) {
+            const getScrollAmount = () => {
+                const firstSlide = sliderContent.querySelector('.store-slide, .actor-poster-wrapper, .movie-card, .bts-video');
+                if (firstSlide) {
+                    // Get width including gap
+                    const style = window.getComputedStyle(sliderContent);
+                    const gap = parseFloat(style.gap) || 0;
+                    return firstSlide.offsetWidth + gap;
+                }
+                return sliderContent.clientWidth * 0.8;
+            };
+
             leftArrow.addEventListener('click', () => {
-                const scrollAmount = sliderContent.clientWidth * 0.8; // Scroll 80% of visible width
-                sliderContent.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                sliderContent.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
             });
 
             rightArrow.addEventListener('click', () => {
-                const scrollAmount = sliderContent.clientWidth * 0.8;
-                sliderContent.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                sliderContent.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
             });
         }
     });
