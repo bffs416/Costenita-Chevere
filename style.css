@@ -234,14 +234,11 @@ h4 {
    Cast Section (Netflix Sliders)
    ========================================================================== */
 .cast-slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 0.5vw;
-    padding: 2vw 4%;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Firefox */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 2rem 4%;
+    justify-items: center;
 }
 
 .cast-slider::-webkit-scrollbar {
@@ -250,8 +247,8 @@ h4 {
 }
 
 .actor-poster-wrapper {
-    flex: 0 0 16.66666667%;
-    /* 6 items per row by default */
+    width: 100%;
+    max-width: 220px;
     transition: transform var(--transition-speed);
     position: relative;
     border-radius: 12px;
@@ -726,7 +723,7 @@ h4 {
    ========================================================================== */
 @media (max-width: 1024px) {
     .actor-poster-wrapper {
-        flex: 0 0 25%;
+        max-width: 200px;
     }
 
     .bts-video {
@@ -736,7 +733,7 @@ h4 {
 
 @media (max-width: 768px) {
     .actor-poster-wrapper {
-        flex: 0 0 40%;
+        max-width: 180px;
     }
 
     .bts-video {
@@ -758,7 +755,7 @@ h4 {
 
 @media (max-width: 480px) {
     .actor-poster-wrapper {
-        flex: 0 0 60%;
+        max-width: 160px;
     }
 
     .bts-video {
@@ -769,3 +766,62 @@ h4 {
         display: none;
     }
 }
+
+/* ==========================================================================
+   Video Modal (Lightbox)
+   ========================================================================== */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.modal-content video {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
+.close-modal {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--netflix-red);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+    .close-modal {
+        top: -40px;
+        right: 10px;
+    }
+}

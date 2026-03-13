@@ -58,9 +58,7 @@
                 <div class="title-underline"></div>
             </div>
 
-            <div class="slider-wrapper">
-                <button class="slider-arrow left" aria-label="Previous">❮</button>
-                <div class="cast-slider">
+            <div class="cast-slider">
                     <!-- Kathe -->
                     <div class="actor-poster-wrapper protagonist">
                         <div class="actor-poster netflix-card">
@@ -212,8 +210,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="slider-arrow right" aria-label="Next">❯</button>
-            </div>
+
 
         </div>
     </section>
@@ -612,6 +609,16 @@
         <div class="footer-logo">Barbie Costeñita</div>
         <p>&copy; 2026. Una Producción Original.</p>
     </footer>
+
+    <!-- Video Modal (Lightbox) -->
+    <div id="videoModal" class="video-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <video id="modalVideo" controls controlsList="nodownload" oncontextmenu="return false;">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </div>
+    </div>
 
     <script src="main.js?v=3"></script>
 </body>

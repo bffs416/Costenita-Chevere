@@ -218,8 +218,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     castBackdrop.addEventListener('click', closeExpandedCast);
     
-    // Close on Escape key
+    // --- Video Modal Logic ---
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const closeModal = document.querySelector('.close-modal');
+    const btsVideos = document.querySelectorAll('.bts-video video');
+
+    btsVideos.forEach(video => {
+        // Change cursor directly via JS to indicate clickability
+        video.style.cursor = 'pointer';
+        
+        video.addEventListener('click', (e) => {
+            e.preventDefault();
+            const videoSrc = video.getAttribute('src');
+            modalVideo.src = videoSrc;
+            videoModal.classList.add('active');
+            modalVideo.play();
+            
+            // Disable background scrolling
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeLightbox = () => {
+        videoModal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = '';
+        document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeLightbox);
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) closeLightbox();
+    });
+
+    // Close Modal on Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeExpandedCast();
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeLightbox();
+        }
     });
 });
