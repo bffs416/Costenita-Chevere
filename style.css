@@ -926,4 +926,4 @@ h4 {
         top: -40px;
         right: 10px;
     }
-}
+}@media (max-width: 768px) { .video-modal.forced-landscape .modal-content { width: 90vh; max-width: none; transform: rotate(90deg); transform-origin: center center; } .video-modal.forced-landscape .close-modal { top: -50px; right: -30px; transform: rotate(-90deg); font-size: 3rem; } } video::-webkit-media-controls-volume-slider, video::-webkit-media-controls-mute-button, video::-internal-media-controls-download-button { display: none !important; } video::-webkit-media-controls-enclosure { overflow: hidden !important; }
