@@ -185,40 +185,43 @@ document.addEventListener('DOMContentLoaded', () => {
         container.addEventListener('touchend', resetZoom);
     });
 
-    // --- Cast Expansion Logic ---
-    const castBackdrop = document.createElement('div');
-    castBackdrop.className = 'cast-backdrop';
-    document.body.appendChild(castBackdrop);
-
+    // --- Cast Modal Logic (Dedicated Lightbox) ---
+    const castModal = document.getElementById('castModal');
+    const castModalBody = document.getElementById('castModalBody');
+    const closeCast = document.querySelector('.close-cast');
     const castWrappers = document.querySelectorAll('.actor-poster-wrapper');
-    let currentlyExpanded = null;
-
-    const closeExpandedCast = () => {
-        if (currentlyExpanded) {
-            currentlyExpanded.classList.remove('expanded');
-            castBackdrop.classList.remove('active');
-            currentlyExpanded = null;
-            document.body.style.overflow = ''; // Restore scroll
-        }
-    };
 
     castWrappers.forEach(wrapper => {
         wrapper.addEventListener('click', (e) => {
             e.stopPropagation();
             
-            if (wrapper.classList.contains('expanded')) {
-                closeExpandedCast();
-            } else {
-                closeExpandedCast();
-                wrapper.classList.add('expanded');
-                castBackdrop.classList.add('active');
-                currentlyExpanded = wrapper;
-                document.body.style.overflow = 'hidden'; // Block scroll
-            }
+            // Get the card content
+            const cardContent = wrapper.querySelector('.netflix-card').innerHTML;
+            castModalBody.innerHTML = cardContent;
+            
+            // Show modal
+            castModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
         });
     });
 
-    castBackdrop.addEventListener('click', closeExpandedCast);
+    const closeCastModal = () => {
+        castModal.classList.remove('active');
+        document.body.style.overflow = '';
+        castModalBody.innerHTML = '';
+    };
+
+    closeCast.addEventListener('click', closeCastModal);
+    castModal.addEventListener('click', (e) => {
+        if (e.target === castModal) closeCastModal();
+    });
+
+    // Handle Escape for Cast Modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && castModal.classList.contains('active')) {
+            closeCastModal();
+        }
+    });
     
     // --- Video Modal Logic ---
     const videoModal = document.getElementById('videoModal');
