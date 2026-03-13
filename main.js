@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgMusic = document.getElementById('bgMusic');
     const audioToggle = document.getElementById('audioToggle');
     const audioStatus = audioToggle.querySelector('.audio-status');
-    let isPlaying = false;
+    let isPlaying = true;
     let pausedByVideo = false;
 
     const updateAudioUI = () => {
@@ -313,7 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
         bgMusic.play().then(() => {
             isPlaying = true;
             updateAudioUI();
-        }).catch(e => console.log("Error playing audio:", e));
+        }).catch(e => {
+            console.log("Autoplay blocked, waiting for interaction:", e);
+            // Even if blocked, we want the UI to show we WANT it on if the user prefers
+            isPlaying = false; 
+            updateAudioUI();
+        });
     };
 
     const pauseMusic = (byVideo = false) => {
@@ -357,16 +362,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Auto-play attempt on first interaction
+    // Aggressive auto-play attempt
+    playMusic();
+
+    // Auto-play effort on any interaction
     const startAudioOnFirstInteraction = () => {
         if (!isPlaying && !pausedByVideo) {
             playMusic();
         }
-        document.removeEventListener('click', startAudioOnFirstInteraction);
-        document.removeEventListener('scroll', startAudioOnFirstInteraction);
     };
 
-    document.addEventListener('click', startAudioOnFirstInteraction);
-    document.addEventListener('scroll', startAudioOnFirstInteraction);
+    // More comprehensive list of trigger events
+    ['click', 'touchstart', 'scroll', 'mousedown', 'keydown'].forEach(event => {
+        document.addEventListener(event, startAudioOnFirstInteraction, { once: true });
+    });
 
 });
