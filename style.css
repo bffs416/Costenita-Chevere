@@ -332,6 +332,22 @@ h4 {
 }
 
 .netflix-card .poster-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.netflix-card .poster-overlay h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--text-white);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.netflix-card .poster-overlay .actor-tag,
+.netflix-card .poster-overlay .actor-quote {
     display: none;
 }
 
@@ -572,15 +588,12 @@ h4 {
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
-    transition: transform 0.2s ease-out, box-shadow 0.6s ease;
-    animation: breathingZoom 8s ease-in-out infinite;
-    pointer-events: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zoom-container:hover img {
-    animation: none;
+    transform: scale(1.05);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 1);
-    transform: scale(1); /* Punto de partida para el JS */
 }
 
 @keyframes breathingZoom {
