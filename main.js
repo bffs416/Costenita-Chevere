@@ -342,11 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMusic();
     });
 
-    // Smart Pause: Pause music when any video starts playing
+    // Smart Pause: Pause music when any video starts playing (excluding hero and muted background videos)
     document.querySelectorAll('video').forEach(video => {
         if (video.id === 'bgMusic') return;
         
         video.addEventListener('play', () => {
+            // Ignore hero video and any muted video (background atmosphere)
+            if (video.classList.contains('hero-video') || video.muted) return;
+            
             if (isPlaying) {
                 pauseMusic(true);
             }
