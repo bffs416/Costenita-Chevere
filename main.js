@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const videoSrc = video.getAttribute('src');
             modalVideo.src = videoSrc;
+            modalVideo.muted = true;
             videoModal.classList.add('active');
             modalVideo.play();
             
@@ -284,4 +285,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- Volume Lockdown Logic ---
+    const lockVolume = (v) => {
+        v.muted = true;
+        v.volume = 0;
+    };
+
+    // Apply to all gossip and modal videos
+    const allGossipVideos = document.querySelectorAll('.bts-video video, #modalVideo');
+    allGossipVideos.forEach(v => {
+        v.addEventListener('volumechange', () => lockVolume(v));
+        // Force state initially
+        lockVolume(v);
+    });
 });

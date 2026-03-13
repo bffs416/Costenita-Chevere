@@ -226,14 +226,46 @@ h4 {
 }
 
 .section-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.8rem;
+    padding-left: 4%;
+}
+
+.section-header.center {
+    text-align: left; /* Netflix rows are left aligned */
 }
 
 .section-title {
-    font-size: 1.8rem;
-    color: var(--text-white);
-    display: inline-block;
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    color: #ffffff;
+    font-weight: 800;
+    transition: color 0.3s ease;
+    cursor: default;
+    text-transform: none;
+    letter-spacing: -0.02em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
+    padding-left: 15px;
+}
+
+/* Red accent bar on the left - common in some high-end streaming UI */
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: var(--netflix-red);
+    border-radius: 2px;
+}
+
+.section-title:hover {
+    color: var(--text-white);
+}
+
+.title-underline {
+    display: none; /* Netflix doesn't use underlines for row headers */
 }
 
 .row-title {
