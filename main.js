@@ -337,6 +337,32 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(triggerConfetti, 500);
     }, 1000);
 
+    // --- QR / Direct Link Support (#cuponera) ---
+    const handleHash = () => {
+        if (window.location.hash === '#cuponera') {
+            const cuponeraSection = document.getElementById('cuponera');
+            if (cuponeraSection) {
+                setTimeout(() => {
+                    cuponeraSection.scrollIntoView({ behavior: 'smooth' });
+                    // Extra magic for the QR arrival
+                    setTimeout(() => {
+                        triggerConfetti();
+                        confetti({
+                            particleCount: 200,
+                            startVelocity: 45,
+                            spread: 90,
+                            origin: { y: 0.8 },
+                            colors: ['#FF69B4', '#E50914', '#ffffff']
+                        });
+                    }, 800);
+                }, 500);
+            }
+        }
+    };
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+
     function triggerConfetti() {
         if (typeof confetti === 'function') {
             confetti({
