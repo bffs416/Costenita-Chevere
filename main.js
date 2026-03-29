@@ -322,10 +322,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetCuponera');
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-            if (confirm('¿Quieres reiniciar todos los vales y los 15 abrazos?')) {
-                localStorage.removeItem('barbie_costenita_redeemed_coupons');
-                localStorage.removeItem('barbie_coupon_15_count');
-                location.reload();
+            const password = prompt('Pista: Dime la contraseña');
+            if (password === '1629') {
+                if (confirm('¿Quieres reiniciar todos los vales y los 15 abrazos?')) {
+                    localStorage.removeItem('barbie_costenita_redeemed_coupons');
+                    localStorage.removeItem('barbie_coupon_15_count');
+                    location.reload();
+                }
+            } else if (password !== null) {
+                alert('Contraseña incorrecta. ¡No seas agalla! ✨');
             }
         });
     }
