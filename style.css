@@ -52,7 +52,18 @@ h4 {
     width: 100%;
     z-index: 1000;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
-    transition: background-color var(--transition-speed);
+    transition: background-color var(--transition-speed), top 0.3s ease;
+}
+
+/* When banner is present, navbar moves down */
+body.has-banner .netflix-nav {
+    top: 80px; /* Adjust based on banner height */
+}
+
+@media (max-width: 768px) {
+    body.has-banner .netflix-nav {
+        top: 60px;
+    }
 }
 
 .netflix-nav.scrolled {
@@ -992,4 +1003,256 @@ h4 {
         padding: 15px;
         border-radius: 50%;
     }
+}
+
+/* ==========================================================================
+   Cuponera de Cumpleaños (Birthday Coupon Book)
+   ========================================================================== */
+
+.cuponera-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    padding: 6rem 4%;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #ccac00; /* Gold accent */
+    margin-top: 1rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.cupon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+/* Coupon Ticket Style */
+.cupon-card {
+    background: #ffffff;
+    color: #222;
+    border-radius: 15px;
+    padding: 2.5rem 1.5rem;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    overflow: hidden;
+    /* Ticket perforated edge simulation */
+    border: 3px dashed #E50914;
+}
+
+.cupon-card::before,
+.cupon-card::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #141414; /* Match body background */
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.cupon-card::before { left: -16px; }
+.cupon-card::after { right: -16px; }
+
+.cupon-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 15px 45px rgba(229, 9, 20, 0.3);
+}
+
+.cupon-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.cupon-card h3 {
+    color: #E50914 !important;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.cupon-card p {
+    color: #333 !important;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* Redeem Button Styling */
+.redeem-btn {
+    width: 100%;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    padding: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* Used State */
+.cupon-card.redeemed {
+    filter: grayscale(0.8) opacity(0.7);
+    transform: scale(0.95);
+    pointer-events: none;
+    background: #eee;
+}
+
+.cupon-status {
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(229, 9, 21, 0.6);
+    border: 8px solid rgba(229, 9, 21, 0.6);
+    padding: 0.5rem 1.5rem;
+    border-radius: 15px;
+    display: none;
+    z-index: 5;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.coupon-badge {
+    background: #E50914;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cupon-card.redeemed .cupon-status {
+    display: block;
+    animation: stampIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes stampIn {
+    0% { transform: translate(-50%, -50%) rotate(-45deg) scale(5); opacity: 0; }
+    100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .cuponera-section {
+        padding: 4rem 4%;
+    }
+    
+    .cupon-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cupon-card::after {
+        background: #141414;
+    }
+}
+/* --- Birthday Banner --- */
+.birthday-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 2000;
+    background: linear-gradient(135deg, #000000, #E50914, #000000);
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #E50914;
+    box-shadow: 0 4px 15px rgba(229, 9, 21, 0.5);
+    transition: transform 0.4s ease;
+}
+
+.birthday-banner.hidden {
+    transform: translateY(-100%);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 50px;
+}
+
+.banner-text h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.banner-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #E50914;
+    letter-spacing: 3px;
+    margin-bottom: 2px;
+    background: white;
+    padding: 1px 5px;
+    width: fit-content;
+    margin: 0 auto 2px auto;
+}
+
+.banner-icon {
+    font-size: 2rem;
+    animation: rotateScale 2s ease-in-out infinite;
+}
+
+.close-banner {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+
+.close-banner:hover {
+    background: white;
+    color: #E50914;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+@keyframes rotateScale {
+    0%, 100% { transform: scale(1) rotate(0); }
+    50% { transform: scale(1.2) rotate(10deg); }
+}
+
+@media (max-width: 768px) {
+    .birthday-banner { height: 60px; }
+    .banner-text h2 { font-size: 1rem; }
+    .banner-icon { font-size: 1.4rem; }
+    .banner-content { padding: 0 40px; gap: 10px; }
 }

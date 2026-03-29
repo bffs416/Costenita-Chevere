@@ -223,4 +223,128 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial attempt
     playMusic();
+
+    // --- Cuponera (Redemption) Logic ---
+    const cuponCards = document.querySelectorAll('.cupon-card');
+    const REDEEMED_KEY = 'barbie_costenita_redeemed_coupons';
+
+    // Load redeemed coupons from LocalStorage
+    const getRedeemedCoupons = () => {
+        const saved = localStorage.getItem(REDEEMED_KEY);
+        return saved ? JSON.parse(saved) : [];
+    };
+
+    const saveRedeemedCoupon = (id) => {
+        const redeemed = getRedeemedCoupons();
+        if (!redeemed.includes(id)) {
+            redeemed.push(id);
+            localStorage.setItem(REDEEMED_KEY, JSON.stringify(redeemed));
+        }
+    };
+
+    const applyRedeemedState = (card) => {
+        card.classList.add('redeemed');
+        const btn = card.querySelector('.redeem-btn');
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Canjeado';
+        }
+    };
+
+    // Initialize state
+    const redeemedList = getRedeemedCoupons();
+    let coupon15Count = localStorage.getItem('barbie_coupon_15_count') !== null 
+        ? parseInt(localStorage.getItem('barbie_coupon_15_count')) 
+        : 15;
+
+    cuponCards.forEach(card => {
+        const id = card.getAttribute('data-id');
+        const countDisplay = card.querySelector('#count-15');
+
+        // Initial UI state
+        if (id === '15') {
+            if (countDisplay) countDisplay.textContent = coupon15Count;
+            if (coupon15Count <= 0) {
+                applyRedeemedState(card);
+            }
+        } else if (redeemedList.includes(id)) {
+            applyRedeemedState(card);
+        }
+
+        const redeemBtn = card.querySelector('.redeem-btn');
+        if (redeemBtn) {
+            redeemBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const couponTitle = card.querySelector('h3').textContent;
+                
+                if (id === '15' && coupon15Count > 0) {
+                    if (confirm(`¿Quieres redimir uno de tus 15 abrazos y besitos? (Quedan ${coupon15Count})`)) {
+                        coupon15Count--;
+                        localStorage.setItem('barbie_coupon_15_count', coupon15Count);
+                        if (countDisplay) countDisplay.textContent = coupon15Count;
+                        
+                        triggerConfetti();
+
+                        if (coupon15Count === 0) {
+                            applyRedeemedState(card);
+                            saveRedeemedCoupon(id);
+                        }
+                    }
+                } else if (!redeemedList.includes(id)) {
+                    // Confirm redemption for normal coupons
+                    if (confirm(`¿Estás segura de redimir tu vale por "${couponTitle}"?`)) {
+                        applyRedeemedState(card);
+                        saveRedeemedCoupon(id);
+                        triggerConfetti();
+                    }
+                }
+            });
+        }
+    });
+
+    // --- Birthday Banner Logic ---
+    const birthdayBanner = document.getElementById('birthday-banner');
+    const closeBannerBtn = document.getElementById('closeBirthdayBanner');
+
+    if (closeBannerBtn && birthdayBanner) {
+        closeBannerBtn.addEventListener('click', () => {
+            birthdayBanner.classList.add('hidden');
+            document.body.classList.remove('has-banner');
+            
+            // Allow transition to finish before removing from layout
+            setTimeout(() => {
+                birthdayBanner.style.display = 'none';
+            }, 400);
+        });
+    }
+
+    // --- Reset Logic (For Testing) ---
+    const resetBtn = document.getElementById('resetCuponera');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (confirm('¿Quieres reiniciar todos los vales y los 15 abrazos?')) {
+                localStorage.removeItem('barbie_costenita_redeemed_coupons');
+                localStorage.removeItem('barbie_coupon_15_count');
+                location.reload();
+            }
+        });
+    }
+
+    // Initial Celebration
+    setTimeout(() => {
+        triggerConfetti();
+        // A second burst for more "wow"
+        setTimeout(triggerConfetti, 500);
+    }, 1000);
+
+    function triggerConfetti() {
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#E50914', '#ffffff', '#FFD700', '#FF69B4']
+            });
+        }
+    }
 });

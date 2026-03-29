@@ -36,7 +36,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
-<body class="netflix-theme">
+<body class="netflix-theme has-banner">
+    <!-- Birthday Banner -->
+    <div id="birthday-banner" class="birthday-banner">
+        <div class="banner-content">
+            <span class="banner-icon left">🎉</span>
+            <div class="banner-text">
+                <span class="banner-label">HOY EN ESTRENO MUNDIAL:</span>
+                <h2>🥳 ¡FELIZ CUMPLEAÑOS, KATHE! 🎂</h2>
+                <p>La producción más espectacular de la costa celebra su gran día.</p>
+            </div>
+            <span class="banner-icon right">✨</span>
+            <button class="close-banner" id="closeBirthdayBanner" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="banner-sparkles"></div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar netflix-nav">
         <div class="logo">Barbie Costeñita</div>
@@ -50,6 +65,7 @@
             <li><a href="#cast">El Reparto</a></li>
             <li><a href="#bts">Escenas Inéditas</a></li>
             <li><a href="#store">Coleccionables</a></li>
+            <li><a href="#cuponera">Mis Regalos</a></li>
             <li><a href="#rsvp">La Lista VIP</a></li>
         </ul>
     </nav>
@@ -709,6 +725,175 @@
         </div>
     </section>
 
+    <!-- Birthday Coupon Book Section -->
+    <section id="cuponera" class="cuponera-section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Mis Regalos de Cumpleaños</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">¡Eche, Kathe! Aquí tienes tus vales exclusivos. Redímelos cuando quieras (uno a la vez, ¡no te des garra ♥ se te adora mucho!).</p>
+            </div>
+
+            <div class="cupon-grid">
+                <!-- Coupon 1 -->
+                <div class="cupon-card" data-id="1">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🕯️</div>
+                        <h3>Cena Romántica</h3>
+                        <p>Una velada mágica bajo las estrellas.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 2 -->
+                <div class="cupon-card" data-id="2">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">💆‍♀️</div>
+                        <h3>Masaje Spa</h3>
+                        <p>Relajación total y desconexión.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 3 -->
+                <div class="cupon-card" data-id="3">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🏊‍♂️</div>
+                        <h3>Pasadía Piscilago</h3>
+                        <p>Sol, agua y diversión extrema.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 4 -->
+                <div class="cupon-card" data-id="4">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🎭</div>
+                        <h3>Noche de Ópera</h3>
+                        <p>Gala y cultura en el Teatro Colón.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 5 -->
+                <div class="cupon-card" data-id="5">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">✨</div>
+                        <h3>Noche en el Planetario</h3>
+                        <p>Un viaje por las galaxias.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 6 -->
+                <div class="cupon-card" data-id="6">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🐷</div>
+                        <h3>Lechona en Ibagué</h3>
+                        <p>Viaje al Tolima por la receta original.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 7 -->
+                <div class="cupon-card" data-id="7">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🍖</div>
+                        <h3>Cordero en Bucaramanga</h3>
+                        <p>Sabor santandereano auténtico.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 8 -->
+                <div class="cupon-card" data-id="8">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🌮</div>
+                        <h3>Cena Mexicana</h3>
+                        <p>Tacos, tequila y mucho picante.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 9 -->
+                <div class="cupon-card" data-id="9">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🚲</div>
+                        <h3>Bicicletas Aéreas</h3>
+                        <p>Diversión en las alturas del Jaime Duque.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 10 -->
+                <div class="cupon-card" data-id="10">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🌄</div>
+                        <h3>Boyaca Inmersivo</h3>
+                        <p>Un viaje mágico por los pueblos boyacenses.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 11 -->
+                <div class="cupon-card" data-id="11">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🍿</div>
+                        <h3>Tarde de Películas</h3>
+                        <p>Cine, crispetas y relax total.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 12 -->
+                <div class="cupon-card" data-id="12">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🥓</div>
+                        <h3>Chicharrón con Yuca</h3>
+                        <p>La combinación perfecta de sabor criollo.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 13 -->
+                <div class="cupon-card" data-id="13">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🏊‍♀️</div>
+                        <h3>Nado Sincronizado</h3>
+                        <p>Un espectáculo acuático en el corazón de Bogotá.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 14 -->
+                <div class="cupon-card" data-id="14">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🎭</div>
+                        <h3>Teatro</h3>
+                        <p>Una función inolvidable en las tablas.</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Vale</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+                <!-- Coupon 15 -->
+                <div class="cupon-card" data-id="15">
+                    <div class="cupon-content">
+                        <div class="cupon-icon">🧸</div>
+                        <div class="coupon-badge"><span id="count-15">15</span> disponibles</div>
+                        <h3>Abrazo del Oso</h3>
+                        <p>Un abrazo gigante y un besito apapachable (15 unidades).</p>
+                        <button class="btn btn-primary redeem-btn">Redimir Uno</button>
+                    </div>
+                    <div class="cupon-status">USADO</div>
+                </div>
+            </div>
+            <!-- Reset Button for Testing -->
+            <div style="text-align: center; margin-top: 3rem; padding-bottom: 2rem;">
+                <button id="resetCuponera" class="btn btn-secondary" style="font-size: 0.75rem; opacity: 0.5; border-radius: 50px;">Reiniciar Todo (Pruebas)</button>
+            </div>
+        </div>
+    </section>
+
     <!-- RSVP Section -->
     <section id="rsvp" class="rsvp-section">
         <div class="rsvp-card netflix-card">
@@ -761,6 +946,7 @@
         </audio>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="main.js?v=3"></script>
 </body>
 
